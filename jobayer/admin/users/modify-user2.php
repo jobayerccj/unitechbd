@@ -1,8 +1,4 @@
 <?php
-/*echo '<pre>';
-error_reporting(E_ALL);
-ini_set('display_errors', 1);*/
-
 session_start();
 
 $path = $_SERVER['DOCUMENT_ROOT']."/jobayer/admin/path.php";
@@ -14,7 +10,7 @@ require_once($functionfile);
 require_once($path);
 
 include($config);
-//echo $config;
+
 
 include '../functions.php';
 
@@ -22,7 +18,7 @@ include 'class.php';
 
 if(loggedin())
 {
-	//include($loginheader);
+
 ?>
 <html>
 <head>
@@ -54,13 +50,13 @@ if(loggedin())
 				else { $page=1; };
 				$start_from = ($page-1) * 10; 
 				
-				$dbh = new PDO('mysql:host=localhost;dbname=vpndb', 'vpndb', 'ENFEqax3VGdQmC6t');
+				$dbh = new PDO('mysql:host=localhost;dbname=database_name', 'username', 'password');
 				$stmt = $dbh->prepare("SELECT * FROM user LIMIT $start_from, 10");
 				$stmt->execute() ;
 				
-				//$result = $sth->fetch(PDO::FETCH_ASSOC);
+				
 				$rows = $stmt->fetchAll() ;
-				//$usersdata = mysql_query("SELECT * FROM `user`");
+				
 				foreach($rows as $userdetails)
 				{
 					?>
@@ -89,7 +85,7 @@ if(loggedin())
 <div id="pagination" style="">
 				
 				<?php
-				//echo 'testing pagination';
+				
 				
 				$result = $dbh->prepare("SELECT COUNT(user_id) FROM user");
 				$result->execute();
@@ -98,16 +94,7 @@ if(loggedin())
 				
 				$total_pages = ceil($total_records / 10);
 				 
-				/*for ($i=1; $i<=$total_pages; $i++) {
 				
-				echo "<a href='view-logs2.php?page=".$i."'";
-				if($page==$i)
-				{
-				echo "id=active";
-				}
-				echo ">";
-				echo "".$i."</a> ";
-				}*/
 				if($total_pages>1){
 				
 				for ($i=1; $i<=$total_pages; $i++) {
@@ -118,24 +105,15 @@ if(loggedin())
 				?>
 				</div>	
 		
-		<!--<table id="box-table-a">
-				<thead>
-				<tr >
-					<th style="border:1px;solid;">User Name</th> 
-					<th style="border:1px;solid;">User Email</th> 
-					<th style="border:1px;solid;">Current Status</th>
-					<th style="border:1px;solid;">Action</th>
-				
-				</tr>
-				</thead>
+		
 			<?php 				
 				$dbh = new PDO('mysql:host=localhost;dbname=vpndb', 'vpndb', 'ENFEqax3VGdQmC6t');
 				$stmt = $dbh->prepare("SELECT * FROM user");
 				$stmt->execute() ;
 				
-				//$result = $sth->fetch(PDO::FETCH_ASSOC);
+				
 				$rows = $stmt->fetchAll() ;
-				//$usersdata = mysql_query("SELECT * FROM `user`");
+				
 				foreach($rows as $userdetails)
 				{
 					?>
@@ -176,7 +154,7 @@ if(loggedin())
 </body>
 </html>
 <?php
-//include($get_footer);
+
 }
 else
 {
