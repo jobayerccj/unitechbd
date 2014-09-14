@@ -1,8 +1,4 @@
 <?php
-/*echo '<pre>';
-error_reporting(E_ALL);
-ini_set('display_errors', 1);*/
-
 session_start();
 
 $path = $_SERVER['DOCUMENT_ROOT']."/jobayer/admin/path.php";
@@ -14,7 +10,6 @@ require_once($functionfile);
 require_once($path);
 
 include($config);
-//echo $config;
 
 include '../functions.php';
 
@@ -22,7 +17,7 @@ include 'class.php';
 
 if(loggedin())
 {
-	//include($loginheader);
+
 ?>
 <html>
 <head>
@@ -44,13 +39,13 @@ if(loggedin())
 				</div>
 <?php 
 					
-				$dbh = new PDO('mysql:host=localhost;dbname=vpndb', 'vpndb', 'ENFEqax3VGdQmC6t');
+				$dbh = new PDO('mysql:host=localhost;dbname=database_name', 'password', 'password');
 				
 				$date1 = date('Y-m-d', strtotime("-7 days"));
 				$date2 = date('Y-m-d', strtotime("-30 days"));
 				//echo date('M d, Y', $date);
 				
-				$dbh = new PDO('mysql:host=localhost;dbname=vpndb', 'vpndb', 'ENFEqax3VGdQmC6t');
+				$dbh = new PDO('mysql:host=localhost;dbname=database_name', 'password', 'password');
 				$result = $dbh->prepare("SELECT COUNT(user_id) FROM user WHERE DATEDIFF(user_registration_datetime, '$date1') >= 1");
 				$result->execute();
 				$row = $result->fetch();
@@ -86,17 +81,13 @@ if(loggedin())
 				$row6 = $result6->fetch();
 				$total_campaign = $row6[0];
 				
-				//echo $total_records.'test';
+				
 				?>
 				
 		<div class="log_row">
 				<?php 
 				$datetime1 = date('Y-m-d H:i:s');
-				//echo $datetime1;
-				//$datetime2 = '2014-09-02';
 				
-				//$interval = $datetime1->diff($datetime2);
-				//echo $interval->format('%R%a days');
 				?>
 				
 				<div class="serial_no" style="width:22%;padding-left:5px;"> Total registered user</div>
@@ -141,7 +132,7 @@ if(loggedin())
 </body>
 </html>
 <?php
-//include($get_footer);
+
 }
 else
 {
