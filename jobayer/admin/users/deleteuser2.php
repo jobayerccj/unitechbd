@@ -19,7 +19,7 @@ if(loggedin())
 ?>
 <html>
 <head>
-<title>Another HTML page</title>
+<title>Add User</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 </head>
 
