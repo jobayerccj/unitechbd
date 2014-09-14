@@ -1,8 +1,4 @@
 <?php
-
-/*echo '<pre>';
-error_reporting(E_ALL);
-ini_set('display_errors', 1);*/
 session_start();
 
 $path = "../path.php";
@@ -29,7 +25,7 @@ if(loggedin())
 <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
-<!--<script src="js/ckeditor.js"></script>-->
+
 <script>
 $(function() {
 $( "#datepicker" ).datepicker();
@@ -41,11 +37,8 @@ $( "#datepicker" ).datepicker();
 				function test(){
 					alert('test');
 				}
-				//tinymce.init({selector:'textarea'});
+				
 		</script>
-<!--
-<div id="storage" style="display:none;">
-</div>-->
 
 <section class="row" style="background:#9bd7d5;height:auto;">
 	<div class="container" style="height:100%;">
@@ -96,7 +89,7 @@ $( "#datepicker" ).datepicker();
 				$date2 = date('Y-m-d', strtotime("-30 days"));
 				//echo date('M d, Y', $date);
 				
-				$dbh = new PDO('mysql:host=localhost;dbname=vpndb', 'vpndb', 'ENFEqax3VGdQmC6t');
+				$dbh = new PDO('mysql:host=localhost;dbname=database_name', 'username', 'password');
 				$result = $dbh->prepare("SELECT COUNT(user_id) FROM user WHERE DATEDIFF(user_registration_datetime, '$date1') >= 1");
 				$result->execute();
 				$row = $result->fetch();
@@ -132,16 +125,12 @@ $( "#datepicker" ).datepicker();
 				$row6 = $result6->fetch();
 				$total_campaign = $row6[0];
 									
-				//echo $total_records.'test';
+				
 				?>
 			<div class="log_row">
 				<?php 
 				$datetime1 = date('Y-m-d H:i:s');
-				//echo $datetime1;
-				//$datetime2 = '2014-09-02';
 				
-				//$interval = $datetime1->diff($datetime2);
-				//echo $interval->format('%R%a days');
 				?>
 				
 				<div class="serial_no" style="width:22%;padding-left:5px;"> Total registered user</div>
@@ -199,7 +188,7 @@ header('Location:../index.php');
 
 	if(isset($_POST['register']))
 	{
-	//echo 'testing';
+	
 		$seprator = "|";
 		
 		$message = "User Added";
@@ -228,26 +217,23 @@ header('Location:../index.php');
 		$rows = $stmt->fetchAll() ;
 		$data = count($rows);
 		
-		//$check = mysql_query("SELECT * FROM `members` where `user_name`='$uname' || `email_id`='$uemail'") or die(mysql_error());
+		
 		
 		if($data >=1)
 		{	
-			
-			//$error_msg = "Username/Email id is already registered with this account";
 			
 			$_SESSION['error_msg']="Username/Email id is already registered with this account";
 			echo "<script>
 			loadWholePage('adduser2.php');
 			</script>";
-			//echo $error_msg;
-			//$error_msg = '';
+		
 			
 		}
 		
 		else if($uname =='' || $password=='' || $uemail=='' || $confirm_password =='')
 		{	
 		
-			//$error_msg = "Please fill up all required field correctly";
+		
 			
 			$_SESSION['error_msg']="Please fill up all required field correctly";
 			echo "<script>
@@ -289,15 +275,7 @@ header('Location:../index.php');
 			
 			$final = $preparedStatement->execute(array(':user_name' => $uname, ':user_password_hash' => $mdpass, ':user_email' => $uemail, ':user_active' => $activate, ':date' => $date,':expiration' => $expiration, ':ip_address' => $id_address , ':role' => $role));
 		
-		//echo 'successfully added';
 		
-			//$querys = mysql_query("INSERT INTO `user` (`user_name`,`user_password_hash`,`user_email`,`user_active`,`role`)
-		 //VALUES ('$uname','$mdpass','$uemail','$empno','$activate','$role')") or die(mysql_error());
-		 
-	
-		//$log = new File_log();
-	
-		//$log-> Write("../../test.txt",$data);
 	
 	}
 	
@@ -308,10 +286,7 @@ header('Location:../index.php');
 		
 		
 	}
-	/*else
-	{
-		echo "<div class='messages'>Something went wrong</div>";
-	}*/
+	
 		
 	}
 	
@@ -326,14 +301,10 @@ header('Location:../index.php');
 		else
 		$logo = "logo/".$_FILES["logo"]["name"];
 		
-		//$destination_path = getcwd().DIRECTORY_SEPARATOR;
-		//$target_path = $destination_path . basename( $_FILES["logo"]["name"]);
-		//@move_uploaded_file($_FILES['logo']['tmp_name'], $target_path);
+		
 		if(!file_exists($_FILES["logo"]["name"])){
 		move_uploaded_file($_FILES["logo"]["tmp_name"],"./logo/".$_FILES["logo"]["name"]);
 		}
-		//echo is_uploaded_file($_FILES['logo']['tmp_name'])?'true':'false';
-		
 			
 			if($_POST['campaign']=='' || $_POST['formatted_text']=='' || $_FILES["logo"]["name"] ==''){
 			$_SESSION['c_error_msg'] .="*Please enter all information properly";		
@@ -355,7 +326,7 @@ header('Location:../index.php');
 			loadWholePage('show_campaign.php');
 			</script>";
 			}
-			//echo $_SESSION['c_error_msg'];exit;
+			
 			
 			
 			
@@ -367,8 +338,7 @@ header('Location:../index.php');
 		$name = $_POST['campaign'];
 		$text = $_POST['formatted_text'];
 		$logo1 = $_POST['logo1'];
-		//echo $logo."<br/>";
-		//echo $logo." ".$_FILES["logo"]["name"].'test';exit;
+		
 		
 		if($_FILES["logo"]["name"]==''){
 			$logo = $logo1;
@@ -376,17 +346,12 @@ header('Location:../index.php');
 		else{
 		$logo = "logo/".$_FILES["logo"]["name"];
 		}
-		//echo $logo.'qweqwewq';exit;
 		
-		
-		//$destination_path = getcwd().DIRECTORY_SEPARATOR;
-		//$target_path = $destination_path . basename( $_FILES["logo"]["name"]);
-		//@move_uploaded_file($_FILES['logo']['tmp_name'], $target_path);
 		
 		if(!file_exists($_FILES["logo"]["name"])){
 		move_uploaded_file($_FILES["logo"]["tmp_name"],"./logo/".$_FILES["logo"]["name"]);
 		}
-		//move_uploaded_file($_FILES["logo"]["tmp_name"],"./logo/".$_FILES["logo"]["name"]);
+		
 		
 		$dbh = new PDO('mysql:host=localhost;dbname=database_name', 'username', 'password');
 		
@@ -405,105 +370,10 @@ header('Location:../index.php');
 	
 
 ?>
-<!-- For validations 
-<script src="https://<?php echo $jqueryminjs; ?>"></script>
 
-<script src="https://<?php echo $validateminjs; ?>"></script>-->
 
-<!-- validation end --> 
-
-<!-- jQuery Form Validation code -->
-<script>
-setTimeout(function(){ $('.messages').fadeOut('slow'); }, 5000);
-$(document).ready(function(){
-	jQuery.validator.addMethod("noSpace", function(value, element)
-    	{ return value.indexOf(" ") < 0; }, "No space in Password");
-    	$.validator.addMethod("alpha", function(value, element) {
-    return this.optional(element) || value == value.match(/^[a-zA-Z ]*$/);
- });
-    $("#regform").validate({
-    
-        // Specify the validation rules
-        rules: {
-            uname: {
-				required:true,
-				minlength:5,
-				noSpace: true
-				},
-            email: {
-                required: true,
-                email: true
-            },
-            upassword: {
-                required: true,
-                minlength: 5,
-                noSpace: true
-            },
-            confirm_password:{
-					required:true,
-					equalTo:"#uppassword"
-				},
-            fname:{
-				required: true,
-				minlength: 3,
-				alpha: true
-				},
-			lname:{
-				required:true,
-				minlength: 3,
-				alpha: true
-				},
-			designation:{
-				required:true,
-				minlength:4
-				},
-			empno:{
-				required: true,
-				},
-			organisation:{
-				required:true,
-				},
-				uemail:{
-					required:true,
-					}
-				
-        },
-        
-        // Specify the validation error messages
-        errorElement: "span",
-        messages: {
-            uname: {
-				required: "Please choose Username",
-				noSpace: "Spaces are not allowed in Username"
-			},
-            fname:{
-				required: "Please Enter your Name",
-				alpha: "Only Characters are allowed"
-			},
-            lname:{
-				required: "Please enter your Last Name",
-				alpha: "Only Characters are allowed"
-			},
-            designation:"Field is required",
-            empno: "Field is required",
-            confirm_password:"Password don not Match",
-            organisation:"Field is required",
-            uemail: "Please enter a valid email address",
-            username: "Please enter a valid username",
-            password: {
-                required: "Please provide a password",
-                minlength: "Your password must be at least 5 characters long",
-                noSpace: "Spaces are not allowed in Password"
-            }
-        },
-        
-        submitHandler: function(form) {
-            form.submit();
-        }
-    });
-
-  });
-</script></div>
+       
+           </div>
 	</div>
 </section>
 <?php
