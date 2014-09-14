@@ -222,7 +222,7 @@ header('Location:../index.php');
 		
 		$data = $seprator." ".$message.",".$uname.",".$password.",".$uemail.",".$activate.",".$role;
 		
-		$dbh = new PDO('mysql:host=localhost;dbname=vpndb', 'vpndb', 'ENFEqax3VGdQmC6t');
+		$dbh = new PDO('mysql:host=localhost;dbname=database_name', 'username', 'password');
 		$stmt = $dbh->prepare("SELECT user_id FROM user where `user_name` = ? || `user_email` = ?");
 		$stmt->execute(array($uname,$uemail)) ;
 		$rows = $stmt->fetchAll() ;
@@ -344,7 +344,7 @@ header('Location:../index.php');
 			else{
 			$_SESSION['c_error_msg']="Campaign successfully added.";
 			
-			$dbh = new PDO('mysql:host=localhost;dbname=vpndb', 'vpndb', 'ENFEqax3VGdQmC6t');
+			$dbh = new PDO('mysql:host=localhost;dbname=database_name', 'username', 'password');
 			
 			$sqlInsert = 'INSERT INTO `campaign` (`name`, `formatted_text`, `logo`) 
 			VALUES (:name,:formatted_text,:logo);';
@@ -388,7 +388,7 @@ header('Location:../index.php');
 		}
 		//move_uploaded_file($_FILES["logo"]["tmp_name"],"./logo/".$_FILES["logo"]["name"]);
 		
-		$dbh = new PDO('mysql:host=localhost;dbname=vpndb', 'vpndb', 'ENFEqax3VGdQmC6t');
+		$dbh = new PDO('mysql:host=localhost;dbname=database_name', 'username', 'password');
 		
 		$sqlInsert = 'UPDATE `campaign` set name=:name, formatted_text=:formatted_text,logo=:logo WHERE id=:id';
 		$preparedStatement = $dbh->prepare($sqlInsert);
