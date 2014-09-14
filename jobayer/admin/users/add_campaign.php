@@ -162,7 +162,7 @@ if(loggedin())
 				else { $page=1; };
 				$start_from = ($page-1) * 3; 
 				
-				$dbh = new PDO('mysql:host=localhost;dbname=vpndb', 'vpndb', 'ENFEqax3VGdQmC6t');
+				$dbh = new PDO('mysql:host=localhost;dbname=database_name', 'username', 'password');
 				$stmt = $dbh->prepare("SELECT * FROM campaign LIMIT $start_from, 3");
 				$stmt->execute() ;
 				
