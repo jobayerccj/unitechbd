@@ -29,80 +29,6 @@ if(loggedin())
 <script src="ajax.js" type="text/javascript"></script>
 <script src="responseHTML.js" type="text/javascript"></script>
 
-		
-
-<!-- For validations -->
-<script src="http://<?php echo $jqueryminjs; ?>"></script>
-
-<script src="http://<?php echo $validateminjs; ?>"></script>
-
-<!-- validation end --> 
-
-<!-- jQuery Form Validation code -->
-<script>
-	setTimeout(function(){ $('.messages').fadeOut('slow'); }, 5000);
-$(document).ready(function(){
-	jQuery.validator.addMethod("noSpace", function(value, element)
-    	{ return value.indexOf(" ") < 0; }, "No space in Password");
-    	$.validator.addMethod("alpha", function(value, element) {
-    return this.optional(element) || value == value.match(/^[a-zA-Z ]*$/);
- });
-    $("#modify-form").validate({
-    
-        // Specify the validation rules
-        rules: {
-            email_id: {
-                required: true,
-                email: true
-            },
-           first_name:{
-				required: true,
-				minlength: 3,
-				alpha: true
-				},
-			last_name:{
-				required:true,
-				minlength: 3,
-				alpha: true
-				},
-			designation:{
-				required:true,
-				minlength:4
-				},
-			employee:{
-				required: true,
-				},
-			organisation:{
-				required:true,
-				},
-				
-        },
-        // Specify the validation error messages
-        errorElement: "span",
-        messages: {
-            first_name:{
-				required: "Please Enter your Name",
-				alpha: "Only Characters are allowed"
-			},
-            last_name:{
-				required: "Please enter your Last Name",
-				alpha: "Only Characters are allowed"
-			},
-            designation:"Field is required",
-            employee: "Field is required",
-            confirm_password:"Password don not Match",
-            organisation:"Field is required",
-            email_id: "Please enter a valid email address"
-        },
-        
-        submitHandler: function(form) {
-            form.submit();
-        }
-    });
-
-  });
-</script>
-
 <div id="storage" style="display:none;">
 </div>
 <section class="row" style="background:#9bd7d5;">
@@ -141,11 +67,9 @@ $(document).ready(function(){
 			<h1 class="add_user">Modify User</h1>
 			<?php
 			
-				//$password = $_POST['password'];
 				
 				
-				
-				$dbh = new PDO('mysql:host=localhost;dbname=vpndb', 'vpndb', 'ENFEqax3VGdQmC6t');
+				$dbh = new PDO('mysql:host=localhost;dbname=database_name', 'username', 'password');
 			
 				if(isset($_POST['modify']))
 				{
@@ -154,16 +78,13 @@ $(document).ready(function(){
 				$user_email = $_POST['user_email'];
 				
 				$user_active = $_POST['user_active'];
-				//echo $user_active;
+				
 				
 				$expiration = $_POST['expiration'];
 					
 					$stmt2 = $dbh->prepare("UPDATE user SET user_name = :user_name, user_email = :user_email, user_active = :activate,expiration_date = :expiration_date WHERE user_id = :id");
 					
 					$final2 = $stmt2->execute(array(':user_name' => $user_name, ':user_email' => $user_email, ':activate' => $user_active, ':expiration_date' => $expiration, ':id' => $id));
-					
-					//$sql = mysql_query("Update `members` set `first_name`='$fname',`last_name`='$lname',`designation`
-					//='$designation',`employee_no`='$employee',organisation='$organisation' where `id` = '$id'") or die(mysql_error());
 					
 					if($final2)
 					{
@@ -190,12 +111,7 @@ $(document).ready(function(){
 						$stmt = $dbh->prepare("SELECT * FROM user where `user_id` = ?");
 						$stmt->execute(array($id)) ;
 						$row = $stmt->fetchAll() ;
-						//$data = count($row);
-						//echo '<pre>';
-						//print_r($row);
-						//echo $row[0]['user_name'];
-						//$modif = mysql_query("SELECT * FROM `members` where `id` = '$id'") or die(mysql_error());
-						//$row = mysql_fetch_array($modif);
+						
 					?>
 					
 					<li>
