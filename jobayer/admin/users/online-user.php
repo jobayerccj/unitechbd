@@ -15,7 +15,7 @@ include 'class.php';
 
 if(loggedin())
 {
-	//include($loginheader);
+	
 ?>
 <html>
 <head>
@@ -31,30 +31,7 @@ if(loggedin())
 <body bgcolor="#FFFFFF">
 		<?php 
 		exec('/usr/bin/vpnstatus',$output);
-		//echo '<pre>';
-		//var_dump($output);
 		
-		/*$value[] = substr($output[0],0,16);
-		$value[] = substr($output[0],26,15);
-		$value[] = substr($output[0],45,15);
-		$value[] = substr($output[0],65,15);
-		$value[] = substr($output[0],80,10);
-		$value[] = substr($output[0],90,25);
-		
-		$value[] = substr($output[1],0,16);
-		$value[] = substr($output[1],26,15);
-		$value[] = substr($output[1],45,15);
-		$value[] = substr($output[1],65,15);
-		$value[] = substr($output[1],80,10);
-		$value[] = substr($output[1],90,25);
-		
-		$pieces[] = explode("  ", $output[1]);
-		
-		$empty_elements = array_keys($pieces[0],"");
-		foreach ($empty_elements as $e)
-		unset($pieces[0][$e]);*/
-		
-		//var_dump($pieces);
 		?>
 		
 		
@@ -62,17 +39,6 @@ if(loggedin())
 			<h1 class="add_user" style="text-indent:0;">Online Users</h1>	
 			
 			<div class="view_log_details1">
-				<!--<div class="log_heading">
-					
-					<div class="serial_no">User</div>
-					<div class="user_name">Action</div>
-					<div class="first_name">Real IP</div>
-					<div class="last_name">Virtual IP</div>
-					<div class="email_address">Protocol</div>
-					
-					<div class="department">Date</div>
-				</div>-->
-				
 				
 			<?php if(count($output)>1){ ?>
 			<table id="box-table-a">
@@ -109,21 +75,14 @@ if(loggedin())
 							
 							</tr>
 							</tbody>
-							<!--<div class="serial_no"><?php echo $pieces2[0][0];?></div>
-							<div class="user_name"><?php echo $pieces2[0][10];?></div>
-							<div class="first_name"><?php echo $pieces2[0][14];?></div>
-							<div class="last_name"><?php echo $pieces2[0][17];?></div>
-							<div class="email_address"><?php echo $pieces2[0][20];?></div>
 							
-							<div class="department"><?php echo $pieces2[0][21];?></div>-->
 						</div>
 		<?php
-					//print_r($pieces2[0]);
+					
 			?>							
 				
-					<?php //foreach($pieces2[0] as $test2){ ?>
-					 <em><?php //echo $test2;?></em>
-					<?php //} ?>
+				
+					 
 				
 			
 					<?php
@@ -149,7 +108,7 @@ if(loggedin())
 	</body>
 </html>	
 <?php
-//include($get_footer);
+
 }
 else
 {
