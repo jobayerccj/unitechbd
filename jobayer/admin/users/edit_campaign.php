@@ -37,7 +37,7 @@ if(isset($_GET['id'])){
 
 $id = $_GET['id'];
 echo $id;
-$dbh = new PDO('mysql:host=localhost;dbname=vpndb', 'vpndb', 'ENFEqax3VGdQmC6t');
+$dbh = new PDO('mysql:host=localhost;dbname=database_name', 'username', 'password');
 
 
 }
@@ -66,7 +66,7 @@ $dbh = new PDO('mysql:host=localhost;dbname=vpndb', 'vpndb', 'ENFEqax3VGdQmC6t')
 				else { $page=1; };
 				$start_from = ($page-1) * 10; 
 				
-				$dbh = new PDO('mysql:host=localhost;dbname=vpndb', 'vpndb', 'ENFEqax3VGdQmC6t');
+				$dbh = new PDO('mysql:host=localhost;dbname=database', 'username', 'password');
 				$stmt = $dbh->prepare("SELECT * FROM campaign LIMIT $start_from, 10");
 				$stmt->execute() ;
 				
@@ -95,7 +95,7 @@ $dbh = new PDO('mysql:host=localhost;dbname=vpndb', 'vpndb', 'ENFEqax3VGdQmC6t')
 				<div id="pagination" style="">
 				
 				<?php
-				//echo 'testing pagination';
+				
 				
 				$result = $dbh->prepare("SELECT COUNT(id) FROM campaign");
 				$result->execute();
@@ -103,17 +103,7 @@ $dbh = new PDO('mysql:host=localhost;dbname=vpndb', 'vpndb', 'ENFEqax3VGdQmC6t')
 				$total_records = $row[0];
 				
 				$total_pages = ceil($total_records / 10);
-				// echo $total_pages.'page number';
-				/*for ($i=1; $i<=$total_pages; $i++) {
 				
-				echo "<a href='view-logs2.php?page=".$i."'";
-				if($page==$i)
-				{
-				echo "id=active";
-				}
-				echo ">";
-				echo "".$i."</a> ";
-				}*/
 				
 				if($total_pages>1){
 				for ($i=1; $i<=$total_pages; $i++) {
@@ -131,107 +121,6 @@ $dbh = new PDO('mysql:host=localhost;dbname=vpndb', 'vpndb', 'ENFEqax3VGdQmC6t')
 <?php }else { 
 header('Location:../index.php');
  } ?>
-
-
-
-<!-- For validations -->
-<script src="http://<?php echo $jqueryminjs; ?>"></script>
-
-<script src="http://<?php echo $validateminjs; ?>"></script>
-
-<!-- validation end --> 
-
-<!-- jQuery Form Validation code -->
-<script>
-$(document).ready(function(){
-	jQuery.validator.addMethod("noSpace", function(value, element)
-    	{ return value.indexOf(" ") < 0; }, "No space in Password");
-    	$.validator.addMethod("alpha", function(value, element) {
-    return this.optional(element) || value == value.match(/^[a-zA-Z ]*$/);
- });
-    $("#regform").validate({
-    
-        // Specify the validation rules
-        rules: {
-            uname: {
-				required:true,
-				minlength:5,
-				noSpace: true
-				},
-            email: {
-                required: true,
-                email: true
-            },
-            upassword: {
-                required: true,
-                minlength: 5,
-                noSpace: true
-            },
-            confirm_password:{
-					required:true,
-					equalTo:"#uppassword"
-				},
-            fname:{
-				required: true,
-				minlength: 3,
-				alpha: true
-				},
-			lname:{
-				required:true,
-				minlength: 3,
-				alpha: true
-				},
-			designation:{
-				required:true,
-				minlength:4
-				},
-			empno:{
-				required: true,
-				},
-			organisation:{
-				required:true,
-				},
-				uemail:{
-					required:true,
-					}
-				
-        },
-        
-        // Specify the validation error messages
-        errorElement: "span",
-        messages: {
-            uname: {
-				required: "Please choose Username",
-				noSpace: "Spaces are not allowed in Username"
-			},
-            fname:{
-				required: "Please Enter your Name",
-				alpha: "Only Characters are allowed"
-			},
-            lname:{
-				required: "Please enter your Last Name",
-				alpha: "Only Characters are allowed"
-			},
-            designation:"Field is required",
-            empno: "Field is required",
-            confirm_password:"Password don not Match",
-            organisation:"Field is required",
-            uemail: "Please enter a valid email address",
-            username: "Please enter a valid username",
-            password: {
-                required: "Please provide a password",
-                minlength: "Your password must be at least 5 characters long",
-                noSpace: "Spaces are not allowed in Password"
-            }
-        },
-        
-        submitHandler: function(form) {
-            form.submit();
-        }
-    });
-
-  });
-</script>
 
 </div>
 	
