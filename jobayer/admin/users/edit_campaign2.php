@@ -33,77 +33,7 @@ if(loggedin())
   padding: 17px 180px;
 }	
 </style>
-<!-- For validations -->
-<script src="http://<?php echo $jqueryminjs; ?>"></script>
 
-<script src="http://<?php echo $validateminjs; ?>"></script>
-
-<!-- validation end --> 
-
-<!-- jQuery Form Validation code -->
-<script>
-	setTimeout(function(){ $('.messages').fadeOut('slow'); }, 5000);
-$(document).ready(function(){
-	jQuery.validator.addMethod("noSpace", function(value, element)
-    	{ return value.indexOf(" ") < 0; }, "No space in Password");
-    	$.validator.addMethod("alpha", function(value, element) {
-    return this.optional(element) || value == value.match(/^[a-zA-Z ]*$/);
- });
-    $("#modify-form").validate({
-    
-        // Specify the validation rules
-        rules: {
-            email_id: {
-                required: true,
-                email: true
-            },
-           first_name:{
-				required: true,
-				minlength: 3,
-				alpha: true
-				},
-			last_name:{
-				required:true,
-				minlength: 3,
-				alpha: true
-				},
-			designation:{
-				required:true,
-				minlength:4
-				},
-			employee:{
-				required: true,
-				},
-			organisation:{
-				required:true,
-				},
-				
-        },
-        // Specify the validation error messages
-        errorElement: "span",
-        messages: {
-            first_name:{
-				required: "Please Enter your Name",
-				alpha: "Only Characters are allowed"
-			},
-            last_name:{
-				required: "Please enter your Last Name",
-				alpha: "Only Characters are allowed"
-			},
-            designation:"Field is required",
-            employee: "Field is required",
-            confirm_password:"Password don not Match",
-            organisation:"Field is required",
-            email_id: "Please enter a valid email address"
-        },
-        
-        submitHandler: function(form) {
-            form.submit();
-        }
-    });
-
-  });
-</script>
 
 <div id="storage" style="display:none;">
 </div>
@@ -152,7 +82,7 @@ $(document).ready(function(){
 
 				$id = $_GET['id'];
 				//echo $id.'tsst';
-				$dbh = new PDO('mysql:host=localhost;dbname=vpndb', 'vpndb', 'ENFEqax3VGdQmC6t');
+				$dbh = new PDO('mysql:host=localhost;dbname=database_name', 'username', 'password');
 				$stmt = $dbh->prepare("SELECT * FROM campaign where `id` = ?");
 				$stmt->execute(array($id)) ;
 				$row = $stmt->fetchAll() ;
