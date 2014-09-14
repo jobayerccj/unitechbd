@@ -41,8 +41,7 @@ if(loggedin())
 		
 			<ul>
 				<li><a href="add_campaign2.php" >Add Campaign</a></li>
-				<!--<li><a href="#" ONCLICK="loadWholePage('edit_campaign.php')">Edit Campaign</a></li>
-				<li><a href="#" ONCLICK="loadWholePage('delete_campaign.php')">Delete Campaign</a></li>-->
+				
 				<li><a href="#" ONCLICK="loadWholePage('show_campaign.php')">Show Campaign</a></li>
 			</ul>
 		</div>
@@ -54,86 +53,6 @@ if(loggedin())
 
 <div id="edit_form">
 
-
-<!--<div class="form_section_content">
-			<h1 class="add_user">Edit Campaign data</h1>
-			
-			<div class="view_log_details">
-				<div class="log_heading">
-					
-					<div class="serial_no">Name</div>
-					<div class="user_name">F. Text</div>
-					<div class="first_name">Logo</div>
-					<div class="last_name">Action</div>
-					
-				</div>
-<?php 
-	$i = 1;
-	
-				if (isset($_GET["page"])) { 
-				
-				$page = $_GET["page"]; 
-				//echo $page;
-				} 
-				else { $page=1; };
-				$start_from = ($page-1) * 3; 
-				
-				$dbh = new PDO('mysql:host=localhost;dbname=vpndb', 'vpndb', 'ENFEqax3VGdQmC6t');
-				$stmt = $dbh->prepare("SELECT * FROM campaign LIMIT $start_from, 3");
-				$stmt->execute() ;
-				
-				//$result = $sth->fetch(PDO::FETCH_ASSOC);
-				$rows = $stmt->fetchAll() ;
-				//$usersdata = mysql_query("SELECT * FROM `campaign`");
-				foreach($rows as $userdetails)
-				{
-					?>
-		
-		<div class="log_row">
-			
-			<div class="serial_no"><?php echo $userdetails['name'];?></div>
-			<div class="user_name"><?php echo $userdetails['formatted_text'];?></div>
-			<div class="first_name"><img src="<?php echo $userdetails['logo'];?>" alt="logo" width="50%"/></div>
-			<div class="last_name">Edit</div>
-			
-		</div>
-<?php
-
-}
-?>
-			</div>
-			
-
-				<div id="pagination" style="">
-				
-				<?php
-				//echo 'testing pagination';
-				
-				$result = $dbh->prepare("SELECT COUNT(id) FROM campaign");
-				$result->execute();
-				$row = $result->fetch();
-				$total_records = $row[0];
-				
-				$total_pages = ceil($total_records / 3);
-				 
-				/*for ($i=1; $i<=$total_pages; $i++) {
-				
-				echo "<a href='view-logs2.php?page=".$i."'";
-				if($page==$i)
-				{
-				echo "id=active";
-				}
-				echo ">";
-				echo "".$i."</a> ";
-				}*/
-				
-				for ($i=1; $i<=$total_pages; $i++) {
-				?>
-				<a href="#" ONCLICK="loadWholePage('edit_campaign.php?page=<?php echo $i;?>')" id="<?php if($page==$i) echo "active";?>"><?php echo $i;?></a>
-				<?php }?>
-				</div>
-		</div>
-</div>-->
 
 <div id="delete_form">
 Delete campaign
