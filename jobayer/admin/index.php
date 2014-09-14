@@ -27,7 +27,7 @@ $remember = $_POST['remember'];
 
 //echo $remember.'test';
 
-$dbh = new PDO('mysql:host=localhost;dbname=vpndb', 'vpndb', 'ENFEqax3VGdQmC6t');
+$dbh = new PDO('mysql:host=localhost;dbname= database_name', 'username', 'password');
 $stmt = $dbh->prepare("SELECT user_id FROM user where `user_name` = ? && `user_password_hash` = ?");
 $stmt->execute(array($username,$password)) ;
 $rows = $stmt->fetchAll() ;
