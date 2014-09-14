@@ -1,7 +1,4 @@
 <?php
-/*echo '<pre>';
-error_reporting(E_ALL);
-ini_set('display_errors', 1);*/
 
 session_start();
 
@@ -19,7 +16,7 @@ include 'class.php';
 
 if(loggedin())
 {
-	//include($loginheader);
+
 ?>
 <html>
 <head>
@@ -68,7 +65,7 @@ text-align: center;width: 60%;
 				else { $page=1; };
 				$start_from = ($page-1) * 10; 
 				
-				$dbh = new PDO('mysql:host=localhost;dbname=vpndb', 'vpndb', 'ENFEqax3VGdQmC6t');
+				$dbh = new PDO('mysql:host=localhost;dbname=database_name', 'username', 'password');
 				$stmt = $dbh->prepare("SELECT * FROM conn_logs LIMIT $start_from, 10");
 				$stmt->execute() ;
 				
@@ -99,7 +96,7 @@ text-align: center;width: 60%;
 				<div id="pagination" style="">
 				
 				<?php
-				//echo 'testing pagination';
+				
 				
 				$result = $dbh->prepare("SELECT COUNT(serial) FROM conn_logs");
 				$result->execute();
@@ -108,16 +105,7 @@ text-align: center;width: 60%;
 				
 				$total_pages = ceil($total_records / 10);
 				 
-				/*for ($i=1; $i<=$total_pages; $i++) {
 				
-				echo "<a href='view-logs2.php?page=".$i."'";
-				if($page==$i)
-				{
-				echo "id=active";
-				}
-				echo ">";
-				echo "".$i."</a> ";
-				}*/
 				if($total_pages>1){
 				
 				for ($i=1; $i<=$total_pages; $i++) {
@@ -131,14 +119,14 @@ text-align: center;width: 60%;
 		
 			<?php 
 			
-			//echo readfile("../../test.txt"); ?>
+		
 		
 
 
 	</body>
 </html>	
 <?php
-//include($get_footer);
+
 }
 else
 {
