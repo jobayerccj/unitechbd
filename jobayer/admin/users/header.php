@@ -15,8 +15,7 @@
 		<script>
 		$.noConflict();
 				function test1(){
-					//alert('test');
-					//loadWholePage('demo.php');
+					
 					
 					loadWholePage('add_campaign.php');
 				}
@@ -27,18 +26,7 @@
 <body>
 <header class="row">
 	
-	<!--<div class="primary_nav">
-		<div class="container">
-			
-			<div class="login_button">
-				<span class="login_icon"></span>
-				<h1>
-                                   <?php //if(loggedin())
-                                        //{ ?>
-                                        <a href="../logout.php">Logout</a></h1><?php// }?>
-			</div>
-		</div>
-	</div>	-->
+
 	
 	<header class="row">
 	<div class="header_top">
