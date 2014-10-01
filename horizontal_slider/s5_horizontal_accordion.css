@@ -1,0 +1,80 @@
+
+div.s5_hor_acc {
+	display:none;
+}
+
+div.s5_hor_acc-js:before{
+    width:10%;
+    background-color: #f00;
+}
+
+div.s5_hor_acc-js:after{
+    width:90%;
+    background-color: #ff0;
+}
+
+
+div.s5_hor_acc-js {
+	display:block;
+        position:absolute;
+	z-index:1;
+	background:#FFFFFF url(../images/inactive.png) repeat-y top left;
+}
+
+div.s5_hor_acc_wrapper-js, div.s5_hor_acc_wrapper {
+    overflow:hidden;
+    position:relative;
+	z-index:1;
+}
+
+div#s5_hor_acc_first {
+    left:0px;
+	background:#FFFFFF repeat-y top left;
+}
+
+.s5_hor_acc_mod_wrap {
+	float:left;
+	padding:15px;
+	padding-left:28px;
+	font-size:12px;
+}
+
+.s5_hor_acc_title_wrap {
+	width:1.9em;
+	overflow:hidden;
+	font-size:1.2em;
+	font-weight:normal;
+	padding-top:28px;
+	font-family:Lucida Sans Unicode;
+	/*direction:rtl;*/
+}
+
+.s5_hor_acc_title_wrap2 {
+	-webkit-transform: rotate(270deg); /* Safari */
+	-moz-transform: rotate(-90deg);	/* Firefox */
+	-o-transform: rotate(270deg); /* Opera */
+	
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);  /* IE6,IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)"; /* IE8 */	
+	transform: rotate(90deg); /* IE9 */
+	-webkit-transform-origin: 15px 10px; 	
+}
+
+.s5_hor_acc_slide_number {
+	width:1.5em;
+	font-size:1.2em;
+	text-align:center;
+        color:#fff;
+}
+
+#s5_link_wrap1  {
+	color:#FFFFFF;
+	cursor:pointer;
+	float:left;
+}
+
+#s5_link_wrap2, #s5_link_wrap3, #s5_link_wrap4, #s5_link_wrap5, #s5_link_wrap6, #s5_link_wrap7, #s5_link_wrap8, #s5_link_wrap9, #s5_link_wrap10  {
+	color:#050505;
+	cursor:pointer;
+	float:left;
+}
